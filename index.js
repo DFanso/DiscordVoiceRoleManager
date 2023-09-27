@@ -64,6 +64,7 @@ client.once('ready', () => {
 });
 
 const pendingRoleRestoration = new Map();
+const tacticalChannels = new Set([Tac1, Tac2, Tac3]);
 
 client.on('voiceStateUpdate', (oldState, newState) => {
   console.log("Voice state update triggered");
@@ -73,7 +74,7 @@ client.on('voiceStateUpdate', (oldState, newState) => {
   const member = newState.member || oldState.member;
 
   let rolesToBeAddedBack = roleMemory.get(member.id) || [];
-  const tacticalChannels = new Set([Tac1, Tac2, Tac3]);
+  
 
   // Handle leaving a voice channel or disconnecting
   if (oldChannelId && (oldChannelId !== newChannelId)) {
